@@ -23,7 +23,7 @@ for (ycol in c(2:length(table.all))){ # loop on all time-series (except 65 which
   } else {
     plotlist[[ycol-1]]<-ggplot() +
       ggtitle(paste0(info$FullName[ycol],
-                     "\nData transformation: ",info$tranformation[ycol],
+                     "\nData transformation: ",info$transformation[ycol],
                      "\nAutoregressive process: AR(",info$AR[ycol],")"))
   }
 }
