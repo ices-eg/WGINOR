@@ -12,22 +12,22 @@
 
 # libraries --------------------------------------------
 library(icesTAF)
-library(raster)
-library(readxl)
-library(sf)
-require(tidyverse) # to wrangle data
+library(readxl) # xlsx files
+library(raster) # spatial data
+library(sf) # spatial data
+require(tidyverse) # wrangle data
+require(nlme) # hierarchical models
+sourceTAF("utilities")
 
 mkdir("model")
 
-
 # initialisation ----------------------------------------------------------
-resampling <- TRUE # TRUE if the confidence intervals are estimated with boostrapping, FALSE if CI are parametric estimates 
+resampling <- FALSE # TRUE if the confidence intervals are estimated with boostrapping, FALSE if CI are parametric estimates 
 nboot <- 1000 # number of resampling (bootstrap)
 polygon_name <- "NPP2022norw" # Name of the polygon to extract data from
 NPP.series <- read_csv(file=file.path(".","data","NPPseries.txt")) # list of the NPP data files
 NPP.series <- NPP.series %>% filter(year>2002) %>% # remove 2002 (incomplete data)
   mutate(NPP.mean=NA,NPP.025=NA,NPP.975=NA)
-
 
 # read polygons data file --------------------------------------------------
 polygonfile <- file.path(".","bootstrap","data","WGINORStrata.xlsx")
@@ -71,18 +71,75 @@ for (i in 1:dim(NPP.series)[1]){
     }
   }
 }
+NPP.series <- NPP.series%>% # only retain dates with valid estimates
+  filter(!is.na(NPP.mean))
+
 
 # compute NPP for the selected polygon - annual estimates ---------------------------------
 NPP.annual <- tibble(year = unique(NPP.series$year),NPP.mean=NA,NPP.025=NA,NPP.975=NA)
 if (resampling==TRUE){
   NPP.annual[,2:4] <- purrr::map_df(NPP.annual$year, function(year){
-    w <- which((NPP.series$year==year)&(!is.na(NPP.series$NPP.mean))) # identify valid individual files within a year
+    w <- which(NPP.series$year==year) # identify valid individual files within a year
     NPPmat <- do.call(cbind,NPP.resampled[w]) # construct a matrix of resampled means with nboot lines
     out <-quantile(apply(NPPmat,1,sum)*8/1000,c(0.5,0.025,0.975))
   })
+} else {
+  NPP.annual <- NPP.series %>%
+    group_by(year) %>%
+    summarise(year=first(year),NPP.mean=mean(NPP.mean,na.rm=TRUE),NPP.025=NA,NPP.975=NA)
 }
 
 
+# hierarchical model ------------------------------------------------------
+# transform data into groupedData format
+datastruct <- NPP.series %>%
+  groupedData(NPP.mean~doy|year,data = .)
+# fit nlme model
+nlmefit <- nlme(NPP.mean~(doy<x0)*(dsigm(doy,k1,x0,xmax))+(doy>=x0)*(dsigm(doy,k2,x0,xmax)),
+                  fixed = k1 + k2 + x0 + xmax ~1,
+                  random = k1 + k2 + x0 + xmax ~1,
+                  start=c(k1=.03,k2=.03,x0=180,xmax=45000),
+                  data = datastruct)
+# make predictions
+NPP.series$NPP.pred <- predict(nlmefit,newdata = datastruct) # model fit (predictions)
+NPP.series$NPP.pred0 <- predict(nlmefit,newdata = datastruct,level=0) # model fit for fixed effects only (predictions at level zero)
 
+# calculate integrated production over the period: day 35 to day 273
+newdata1 <- tibble(year=rep(unique(NPP.series$year),each=239),doy=rep(35:273,length(unique(NPP.series$year)))) 
+newdata1$NPP <- predict(nlmefit,newdata = newdata1)
+newdata1 <- newdata1 %>% 
+  group_by(year) %>% 
+  mutate(cNPP = cumsum(NPP))
+cNPP <- newdata1 %>% 
+  group_by(year) %>% 
+  summarise(totNPP=max(cNPP)/1000) %>% 
+  arrange(year)
 
-# need to add seasonal models and corresponding annual estimates and phenological estimates
+# extract timing of peak production
+timing0 <- nlmefit$coefficients$fixed[3]+nlmefit$coefficients$random$year[,3]
+timing <- tibble(year=as.integer(names(timing0)),peak=timing0) %>% arrange(year)
+# calculate timing of start and end of NPP season
+oneYNPP <- tibble(doy = 35:273,
+                  NPP = predict(nlmefit,newdata = tibble(doy=35:273,year=NA),level = 0)) # predictions with fixed effect only (common to all years)
+start_threshold <- max(oneYNPP$NPP)*0.1 # using as a starting date when PP reach up 10% of the average maximum
+end_threshold <- max(oneYNPP$NPP)*0.5 # using as an ending date when PP reach down 50% of the average maximum
+mean_date_of_peak <- nlmefit$coefficients$fixed[3]
+
+timingstart <- newdata1 %>% 
+  filter((doy<mean_date_of_peak)&(NPP>start_threshold)) %>% 
+  group_by(year) %>%
+  summarise(start=min(doy))
+timingend <- newdata1 %>% 
+  filter((doy>mean_date_of_peak)&(NPP>end_threshold)) %>% 
+  group_by(year) %>%
+  summarise(end=max(doy))
+NPP.annual <- NPP.annual %>% # Construct the final NPP.annual table with total production and timing.
+  left_join(cNPP,by="year") %>%
+  left_join(timing,by="year") %>%
+  left_join(timingstart,by="year") %>%
+  left_join(timingend,by="year") %>%
+  mutate(duration=end-start)
+# Note that the totNPP estimates are in gC.m-2.y-1, while the mean estimates are in mgC.m-2.d-1
+
+write.taf(NPP.series,file.path(".","model","NPPseries.txt"))
+write.taf(NPP.annual,file.path(".","model","NPPannual.txt"))
