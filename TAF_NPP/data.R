@@ -5,20 +5,23 @@
 # In addition, it constructs the NPPseries.txt file that contains the filenames and dates for all the downloaded files.
 
 
-# libraries --------------------------------------------
+# libraries and directory --------------------------------------------
 library(icesTAF)
-library(raster)
 require(tidyverse) # to wrangle data
+require(R.utils) # to unzip .gz files
+library(raster) #To read and manipulate raster data
 
+setwd("./TAF_NPP")
 mkdir("data")
 
 # initialisation ----------------------------------------------------------
-h42h5 <- TRUE # switch to specify if the original hdf files (in H4 format) need to be transformed into H5 (typically, this is set to TRUE on Mac and FALSE on Windows)
+h42h5 <- FALSE # switch to specify if the original hdf files (in H4 format) need to be transformed into H5 (typically, this is set to TRUE on Mac and FALSE on Windows)
 
 # Download and reformat the NPP data from Oregon State Univ.
 url_path <- "http://orca.science.oregonstate.edu/data/1x2/8day/vgpm.r2018.m.chl.m.sst/hdf/"
-filelist<-read.taf(taf.data.path("vgpmfilenames.txt"),sep="\t",header=FALSE) # list of all the 8-day files from the OSU server
-filenames <- substr(filelist$V2,1,12) # extract names without the extension .hdf.gz
+PageInfo<-readLines(url_path) # read the OSU webpage that list all the 8-day files files available
+filenames <- substr(PageInfo[which(nchar(PageInfo)==225)],85,96) # extract names without the extension .hdf.gz
+#Create a table that document filenames and corresponding date.  
 NPP.series<-tibble(filename=filenames,
                    date=NA,
                    year=as.integer(substr(filelist$V2,6,9)),
@@ -39,7 +42,7 @@ Poly <- sp::SpatialPolygons(list(sp::Polygons(list(poly),ID = "A")))
 for (filename in filenames){ # loop on all individual files
   if (file.exists(file.path(".","data",paste0(filename,"crop.gri")))==FALSE){ # test if the file has already been processed
     download.file(url=paste0(url_path,filename,".hdf.gz"),paste0("./",filename,".hdf.gz")) # download individual files
-    system(paste0("gzip -d ",filename,".hdf")) # unzip
+    gunzip(paste0("./",filename,".hdf.gz"), remove=TRUE)
     if(h42h5==TRUE){ # transform from hdf4 to hdf5, if needed
       system(paste0("./h4toh5 ",filename,".hdf")) # convert from hdf to h5 format
       system(paste0("mv -f ",filename,".h5 ",filename,".hdf"))
