@@ -24,7 +24,16 @@ if (str_detect(sessionInfo()$platform,pattern = "darwin")){ # check if the scrip
   h42h5 <- TRUE # switch to specify if the original hdf files (in H4 format) need to be transformed into H5 (typically, this is set to TRUE on Mac and FALSE on Windows)
 }
 
-# Download and reformat the NPP data from Oregon State Univ.
+# geographical boundaries ------------------------------------
+# construct a polygon (in the sp format) with the geographical limits within which NPP data are extracted 
+poly<-matrix(c(-40,-40,70,70,-40,48,80,80,48,48),ncol=2)
+# poly<-list(poly)# to be understood as a polygon, the object has to be a list and for each polygon the first and last rows needs to be the same ()
+poly <- sp::Polygon(list(poly))
+Poly <- sp::SpatialPolygons(list(sp::Polygons(list(poly),ID = "A")))
+
+
+# download and preprocess VGPM data ---------------------------------------
+# 1. download and reformat filenames and information
 url_path <- "http://orca.science.oregonstate.edu/data/1x2/8day/vgpm.r2018.m.chl.m.sst/hdf/"
 PageInfo<-readLines(url_path) # read the OSU webpage that list all the 8-day files files available
 filenames <- substr(PageInfo[which(nchar(PageInfo)==225)],85,96) # extract names without the extension .hdf.gz
@@ -36,16 +45,7 @@ NPP.series<-tibble(filename=filenames,
 NPP.series$date<-as.Date(paste(NPP.series$year,"-01-01",sep=""))+as.numeric(NPP.series$doy) # get back to a date format
 write.csv(NPP.series,file=file.path(".","data","NPPseries.txt"),row.names = FALSE)
 
-# geographical boundaries ------------------------------------
-# construct a polygon (in the sp format) with the geographical limits within which NPP data are extracted 
-poly<-matrix(c(-40,-40,70,70,-40,48,80,80,48,48),ncol=2)
-# poly<-list(poly)# to be understood as a polygon, the object has to be a list and for each polygon the first and last rows needs to be the same ()
-poly <- sp::Polygon(list(poly))
-Poly <- sp::SpatialPolygons(list(sp::Polygons(list(poly),ID = "A")))
-
-
-# download and preprocess VGPM data ---------------------------------------
-
+# 2. download and format NPP data
 for (filename in filenames){ # loop on all individual files
   if (file.exists(file.path(".","data",paste0(filename,"crop.gri")))==FALSE){ # test if the file has already been processed
     download.file(url=paste0(url_path,filename,".hdf.gz"),paste0("./",filename,".hdf.gz")) # download individual files
@@ -60,6 +60,9 @@ for (filename in filenames){ # loop on all individual files
     crs(NPP) <- "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"
     NPPcrop <- raster::crop(NPP,Poly) # crop for the selected geographical domain
     writeRaster(NPPcrop,file.path(".","data",paste0(filename,"crop"))) # save the cropped data in "gri"/raster format
-    system(paste0("rm ",filename,".hdf")) # remove the original hdf file
-  }
+#    system(paste0("rm ",filename,".hdf")) # remove the original hdf file
+    unlink(paste0(filename,".hdf"))# remove the original hdf file
+    }
 }
+
+

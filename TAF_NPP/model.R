@@ -44,6 +44,25 @@ names(Polygons_sf) <- Polygons$StrataKey
 # format polygon for NPP extraction ---------------------------------------
 Poly=sf:::as_Spatial(Polygons_sf[names(Polygons_sf)==polygon_name][[1]]) # get the polygon in "spatial polygons" format
 
+# plot map with NPP and polygon for the report ----------------------------
+filenumber <- 120 # Open one vgpm croped files as an example:
+NPP<-raster::stack(file.path(".","data",paste0(NPP.series$filename[filenumber],"crop.gri")))
+NAvalue(NPP) <- -999 # transform -999 in NAs
+crs(NPP) <- "+proj=utm +zone=43 +datum=WGS84 +units=m +no_defs +ellps=WGS84 +towgs84=0,0,0"
+NPPdf <- as.data.frame(NPP, xy=TRUE) #Convert raster to data.frame
+names(NPPdf)[3] <- 'NPP' #Name value column
+
+taf.png(file.path(".","report","NPP_PolygonMap.png"),width =2100, height =1100)
+ggplot(data = NPPdf) +
+  geom_raster(mapping=aes(x=x, y=y, fill=NPP)) +
+  scale_fill_gradientn(colours= rev(terrain.colors(10)), name='NPP',na.value = "grey50") +
+  geom_polygon(data=Poly,mapping=aes(x=long,y=lat),fill="grey50",alpha=0.2,colour="black") +
+  ggtitle(paste0("NPP (VGPM) - ",NPP.series[filenumber,]$date)) +
+  xlab("longitude") +
+  ylab("latitude") +
+  theme_bw()
+dev.off()
+
 # compute NPP for the selected polygon for 8d periods ---------------------------------
 NPP.resampled<-list()
 
@@ -96,10 +115,10 @@ datastruct <- NPP.series %>%
   groupedData(NPP.mean~doy|year,data = .)
 # fit nlme model
 nlmefit <- nlme(NPP.mean~(doy<x0)*(dsigm(doy,k1,x0,xmax))+(doy>=x0)*(dsigm(doy,k2,x0,xmax)),
-                  fixed = k1 + k2 + x0 + xmax ~1,
-                  random = k1 + k2 + x0 + xmax ~1,
-                  start=c(k1=.03,k2=.03,x0=180,xmax=45000),
-                  data = datastruct)
+                fixed = k1 + k2 + x0 + xmax ~1,
+                random = k1 + k2 + x0 + xmax ~1,
+                start=c(k1=.03,k2=.03,x0=180,xmax=45000),
+                data = datastruct)
 # make predictions
 NPP.series$NPP.pred <- predict(nlmefit,newdata = datastruct) # model fit (predictions)
 NPP.series$NPP.pred0 <- predict(nlmefit,newdata = datastruct,level=0) # model fit for fixed effects only (predictions at level zero)
