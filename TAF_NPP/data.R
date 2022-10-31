@@ -4,7 +4,6 @@
 # and archives the data for the Northeast Atlantic region, in grid format.
 # In addition, it constructs the NPPseries.txt file that contains the filenames and dates for all the downloaded files.
 
-
 # libraries and directory --------------------------------------------
 library(icesTAF)
 require(tidyverse) # to wrangle data
