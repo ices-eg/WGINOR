@@ -1,0 +1,77 @@
+ID,FullName,unit,category,transformation
+Year,Year,,NA,FALSE
+NAO2,NAO2,unitless,climate,FALSE
+NAO3,NAO3,unitless,climate,FALSE
+SPGIndexWinter,Sub-polar gyre index,unitless,climate,FALSE
+NLGyre,Norw-Lof gyre index,unitless,climate,FALSE
+SvinCoreT,Svinoy-core temperature,degree C,climate,FALSE
+SviCoreS,Svinoy-core salinity,unitless,climate,FALSE
+ArcticWater,Arctic water,unitless,climate,FALSE
+RHeatContent,Relative heat content,10^8.Jm^-2,climate,FALSE
+RFreshWaterContent,Relative Fresh Water content,m,climate,FALSE
+TempLanganes,Temperature Langanes,degree C,climate,FALSE
+SalLanganes,Salinity Langanes,unitless,climate,FALSE
+ZooB,Zoo. biomass,dry weight g.m^-2,Ecological component,TRUE
+ZooB.LB,Zoo. biomass (Lof. basin),dry weight g.m^-2,Ecological component,TRUE
+ZooB.NB,Zoo. biomass (Norw. basin),dry weight g.m^-2,Ecological component,TRUE
+ZooB.48W,Zoo. biomass (4-8W).,dry weight g.m^-2,Ecological component,TRUE
+ZooNEIceland,Zoo. biomass (NE Iceland),dry weight g.m^-2,Ecological component,TRUE
+HerringR.age2,Herring recruitment,million indiv,Ecological component,TRUE
+BluewhitingR.age1,Blue whiting recruitment,million indiv,Ecological component,TRUE
+MackerelR.age0,Mackerel recruitment,million indiv,Ecological component,TRUE
+MackerelJuvenileIndex,Mackerel juvenile index,unitless,Ecological component,TRUE
+MackerelR.age2,Mackerel recruitment Age2,million tonnes,Ecological component,TRUE
+HerringB,Herring biomass,million tonnes,Ecological component,TRUE
+BluewhitingB,Blue whiting biomass,million tonnes,Ecological component,TRUE
+MackerelB,Mackerel biomass,million tonnes,Ecological component,TRUE
+HerringBSurvey,Herring biomass (Norw. Sea Survey),million tonnes,Ecological component,TRUE
+HerringC,Herring catches,million tonnes,Pressure,TRUE
+MackerelC,Mackerel catches,million tonnes,Pressure,TRUE
+BluewhitingC,Blue whiting catches,million tonnes,Pressure,TRUE
+HerringF,Herring fishing mortality,y^-1,Pressure,TRUE
+MackerelF,Mackerel fishing mortality,y^-1,Pressure,TRUE
+BluewhitingF,Blue whiting fishing mortality,y^-1,Pressure,TRUE
+HerringW6,Herring weight at age 6,kg,Ecological component,FALSE
+BluewhitingW6,Bluewhiting weight at age 6,kg,Ecological component,FALSE
+MackerelW6,Mackerel weight at age 6,kg,Ecological component,FALSE
+BluewhitingL6,Blue whiting length at age 6,cm,Ecological component,FALSE
+MackerelL6,Mackerel length at age 6,cm,Ecological component,FALSE
+HerringLG,Herring length at age 6,cm,Ecological component,FALSE
+SalmonNNEAC,Salmon abundance(northern NEAC),count,Ecological component,TRUE
+BredfishB,Beaked redfish biomass,million tonnes,Ecological component,TRUE
+SaitheB,Saithe biomass,million tonnes,Ecological component,TRUE
+GhalibutB,Greenlan halibut biomass,million tonnes,Ecological component,TRUE
+PuffinStock,Puffins stock size,pair count,Ecological component,TRUE
+KittywakeStock,Kittywake stock size,pair count,Ecological component,TRUE
+GuillemotStock,Guillemot stock size,pair count,Ecological component,TRUE
+NPPtotalC,NPPtotalC,gC.m-2.yr-1,Ecological component,TRUE
+NPPpeak,NPPpeak,day of year,Ecological component,TRUE
+NPPstart,NPPstart,day of year,Ecological component,TRUE
+NPPend,NPPend,day of year,Ecological component,TRUE
+NPPduration,NPPduration,days,Ecological component,TRUE
+MinkeCatch,Minke whale Catches,count,Pressure,TRUE
+Oil,Oil production,Sm^3,Sector,TRUE
+Gas,Gas production,Sm^3,Sector,TRUE
+FirstHandPrice_Herring,Herring first-hand price,NOK,Sector,FALSE
+FirstHandPrice_Atlmackerel,Mackerel  first-hand price,NOK,Sector,FALSE
+FirstHandPrice_BlueWhiting,Blue whiting first-hand price,NOK,Sector,FALSE
+FirstHandPrice_AtlanticCod,Atlantic cod first-hand price,NOK,Sector,FALSE
+FirstHandPrice_Haddock,Haddock first-hand price,NOK,Sector,FALSE
+FirstHandPrice_Saithe,Saithe first-hand price,NOK,Sector,FALSE
+FirstHandPrice_AtlReadfish,Beaked readfish first-hand price,NOK,Sector,FALSE
+CatchValue_Herring,Herring catch value,1000 NOK,Sector,TRUE
+CatchValue_Atlmackerel,Mackerel  catch value,1000 NOK,Sector,TRUE
+CatchValue_Bluewhiting,Blue whiting catch value,1000 NOK,Sector,TRUE
+CatchValue_Atlanticcod,Atlantic cod catch value,1000 NOK,Sector,TRUE
+CatchValue_Haddock,Haddock catch value,1000 NOK,Sector,TRUE
+CatchValue_Saithe,Saithe catch value,1000 NOK,Sector,TRUE
+CatchValue_AtlReadfish,Beaked readfish catch value,1000 NOK,Sector,TRUE
+ShippingCO2,Shipping,tonnes CO_2,Sector,FALSE
+LicenseSalmonTrout,Aquaculture license (salmon & trout),count,Sector,TRUE
+LicenseOtherFish,Aquaculture license (other fish),count,Sector,TRUE
+LicenseMollCrustEchino,Aquaculture license (moll. crust. echino.),count,Sector,TRUE
+LicenseAlgae,Aquaculture license (algae),count,Sector,TRUE
+LicenseSeaRanching,Aquaculture license (sea ranching),count,Sector,TRUE
+NbFishingBoats,Number of fishing boats,count,Sector,TRUE
+PowerFishingBoats,Engine power,count,Sector,FALSE
+NbFishermen,Number of fishermen,horse power,Sector,TRUE
