@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ID,FullName,unit,category,transformation
+=======
+ID,FullName,unit,category,tranformation
+>>>>>>> f51b4b647ee99a98769f4bbaf4e5aeed6549a841
 Year,Year,,NA,FALSE
 NAO2,NAO2,unitless,climate,FALSE
 NAO3,NAO3,unitless,climate,FALSE
