@@ -1,4 +1,5 @@
 ## Preprocess data, write TAF data tables
+# Comment line added for test purpose during the WGINOR 2022 meeting
 
 library(icesTAF)
 
