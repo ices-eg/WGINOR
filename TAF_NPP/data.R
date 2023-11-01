@@ -33,7 +33,7 @@ Poly <- sp::SpatialPolygons(list(sp::Polygons(list(poly),ID = "A")))
 
 # download and preprocess VGPM data ---------------------------------------
 # 1. download and reformat filenames and information
-url_path <- "http://orca.science.oregonstate.edu/data/1x2/8day/vgpm.r2018.m.chl.m.sst/hdf/"
+url_path <- "http://orca.science.oregonstate.edu/data/1x2/8day/vgpm.r2022.m.chl.m.sst/hdf/"
 PageInfo<-readLines(url_path) # read the OSU webpage that list all the 8-day files files available
 filenames <- substr(PageInfo[which(nchar(PageInfo)==225)],85,96) # extract names without the extension .hdf.gz
 #Create a table that document filenames and corresponding date.  
