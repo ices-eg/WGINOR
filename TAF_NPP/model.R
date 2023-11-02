@@ -24,7 +24,8 @@ mkdir("model")
 # initialisation ----------------------------------------------------------
 resampling <- FALSE # TRUE if the confidence intervals are estimated with boostrapping, FALSE if CI are parametric estimates 
 nboot <- 1000 # number of resampling (bootstrap)
-polygon_name <- "NPP2022norw" # Name of the polygon to extract data from
+# polygon_name <- "NPP2022norw" # Name of the polygon to extract data from
+polygon_name <- c("WGINORNorSeaE","WGINORNorSeaW","WGINORLBE","WGINORLBW") # Name of the polygon to extract data from
 NPP.series <- read_csv(file=file.path(".","data","NPPseries.txt")) # list of the NPP data files
 NPP.series <- NPP.series %>% filter(year>2002) %>% # remove 2002 (incomplete data)
   mutate(NPP.mean=NA,NPP.025=NA,NPP.975=NA)
@@ -42,7 +43,9 @@ Polygons_sf <- purrr::map(1:dim(Polygons)[1],function(i){
 names(Polygons_sf) <- Polygons$StrataKey
 
 # format polygon for NPP extraction ---------------------------------------
-Poly=sf:::as_Spatial(Polygons_sf[names(Polygons_sf)==polygon_name][[1]]) # get the polygon in "spatial polygons" format
+Poly <- map(polygon_name,function(pn){
+  Pol <- sf:::as_Spatial(Polygons_sf[names(Polygons_sf)%in%pn][[1]]) # get the polygon in "spatial polygons" format
+})
 
 # plot map with NPP and polygon for the report ----------------------------
 filenumber <- 120 # Open one vgpm croped files as an example:
@@ -53,23 +56,30 @@ NPPdf <- as.data.frame(NPP, xy=TRUE) #Convert raster to data.frame
 names(NPPdf)[3] <- 'NPP' #Name value column
 
 taf.png(file.path(".","report","NPP_PolygonMap.png"),width =2100, height =1100)
-ggplot(data = NPPdf) +
+gp <- ggplot(data = NPPdf) +
   geom_raster(mapping=aes(x=x, y=y, fill=NPP)) +
   scale_fill_gradientn(colours= rev(terrain.colors(10)), name='NPP',na.value = "grey50") +
-  geom_polygon(data=Poly,mapping=aes(x=long,y=lat),fill="grey50",alpha=0.2,colour="black") +
   ggtitle(paste0("NPP (VGPM) - ",NPP.series[filenumber,]$date)) +
   xlab("longitude") +
   ylab("latitude") +
   theme_bw()
+for(i in 1:length(polygon_name)){
+  gp <- gp +
+    geom_polygon(data=Poly[[i]],mapping=aes(x=long,y=lat),fill="grey50",alpha=0.2,colour="black") 
+}
+print(gp)
 dev.off()
 
-# compute NPP for the selected polygon for 8d periods ---------------------------------
+# compute NPP for the selected polygons for 8d periods ---------------------------------
 NPP.resampled<-list()
 
 for (i in 1:dim(NPP.series)[1]){
   NPP <- raster::stack(file.path(".","data",paste0(NPP.series$filename[i],"crop.gri")))
   NAvalue(NPP) <- -999 # transform -999 in NAs
-  NPP.in.poly <- raster::extract(NPP,Poly,extract=TRUE)[[1]] # extract a vector with all observations in the polygon for one date
+  NPP.in.poly<- map_dfr(1:length(polygon_name),function(np){
+    raster::extract(NPP,Poly[[np]],extract=TRUE)[[1]] %>% # extract a vector with all observations in the polygon for one date
+      tibble() # and format it as a tibble
+  }) %>% deframe()
   nobs <- sum(!is.na(NPP.in.poly)) # number of valid observations
   print(nobs)
   if (nobs>dim(NPP.in.poly)[1]/2){ # check that there are observations for at least 1/2 the polygon
