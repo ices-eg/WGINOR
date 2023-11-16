@@ -17,10 +17,10 @@ table.all=list()
 info$AR <- NA
 for (ycol in c(2:dim(series)[2])){ # loop on all time-series 
   load(file.path(".","model",paste0("modelfits",ycol,".Rdata")))
-  results <- try(ATAC.fit$results,TRUE) 
+  results <- try(ATAC.fit$results,silent=TRUE) 
   if (info$transformation[ycol]==TRUE) results$value <- try(results$value^4,TRUE)
   table.all[[ycol]] <- results
-  info$AR[ycol] <- try(ATAC.fit$AR,TRUE)
+  info$AR[ycol] <- try(ATAC.fit$AR,silent=TRUE)
 }
 
 save(table.all, info, file = "./output/tables.Rdata")
