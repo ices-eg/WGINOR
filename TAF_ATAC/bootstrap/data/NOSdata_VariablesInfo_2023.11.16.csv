@@ -10,11 +10,11 @@ RHeatContent,Relative heat content,10^8.Jm^-2,Climate,FALSE
 RFreshWaterContent,Relative Fresh Water content,m,Climate,FALSE
 TempLanganes,Temperature Langanes,degree C,Climate,FALSE
 SalLanganes,Salinity Langanes,unitless,Climate,FALSE
-ZooB,Zoo. biomass,dry weight g.m^-2,Ecological component,TRUE
-ZooB.LB,Zoo. biomass (Lof. basin),dry weight g.m^-2,Ecological component,TRUE
-ZooB.NB,Zoo. biomass (Norw. basin),dry weight g.m^-2,Ecological component,TRUE
-ZooB.48W,Zoo. biomass (4-8W).,dry weight g.m^-2,Ecological component,TRUE
-ZooNEIceland,Zoo. biomass (NE Iceland),dry weight g.m^-2,Ecological component,TRUE
+ZooB,Zoo. biomass,dry weight mg.m^-2,Ecological component,TRUE
+ZooB.LBE,Zoo. biomass (Lof. Basin east),dry weight mg.m^-2,Ecological component,TRUE
+ZooB.LBW,Zoo. biomass (Lof. Basin west),dry weight mg.m^-2,Ecological component,TRUE
+ZooB.NBE,Zoo. biomass (Norw. Basin east),dry weight mg.m^-2,Ecological component,TRUE
+ZooB.NBW,Zoo. biomass (Norw. Basin west),dry weight mg.m^-2,Ecological component,TRUE
 HerringR.age2,Herring recruitment,million indiv,Ecological component,TRUE
 BluewhitingR.age1,Blue whiting recruitment,million indiv,Ecological component,TRUE
 MackerelR.age2,Mackerel recruitment Age2,million tonnes,Ecological component,TRUE
@@ -56,7 +56,7 @@ CatchValue_Atlanticcod,Atlantic cod catch value,1000 NOK,Sector - Activity - Eco
 CatchValue_Haddock,Haddock catch value,1000 NOK,Sector - Activity - Economy,FALSE
 CatchValue_Saithe,Saithe catch value,1000 NOK,Sector - Activity - Economy,FALSE
 CatchValue_AtlReadfish,Beaked readfish catch value,1000 NOK,Sector - Activity - Economy,FALSE
-ShippingCO2,Shipping,tonnes CO_2,Sector,FALSE
+ShippingCO2,Shipping,tonnes CO_2,Sector - Activity - Economy,FALSE
 LicenseSalmonTrout,Aquaculture license (salmon & trout),count,Sector - Activity - Economy,TRUE
 LicenseOtherFish,Aquaculture license (other fish),count,Sector - Activity - Economy,TRUE
 LicenseMollCrustEchino,Aquaculture license (moll. crust. echino.),count,Sector - Activity - Economy,TRUE

@@ -19,12 +19,15 @@ for (ycol in c(2:length(table.all))){ # loop on all time-series
     ggtitle(paste0(info$FullName[ycol],
                    "\nData transformation: ",info$transformation[ycol],
                    "\nAutoregressive process: AR(",info$AR[ycol],")")) +
-    ylab(paste0("units: ",info$unit[ycol]))
+    ylab(paste0("units: ",info$unit[ycol])) +
+    theme(plot.title = element_text(size = 8))
   } else {
     plotlist[[ycol-1]]<-ggplot() +
       ggtitle(paste0(info$FullName[ycol],
                      "\nData transformation: ",info$transformation[ycol],
-                     "\nAutoregressive process: AR(",info$AR[ycol],")"))
+                     "\nAutoregressive process: AR(",info$AR[ycol],")")) +
+      theme(plot.title = element_text(size = 8))
+    
   }
 }
 
@@ -36,10 +39,10 @@ for(j in 1:length(Categories)){ # loop on categories
   NbFig<-ceiling(length(l)/12) # Nb of png to be created for a category
   for(k in 1:NbFig){ # loop on pages within categories
     taf.png(paste0("ATAC_series_",Categories[j],"_plot",k),width =2100, height =2970)
-    title1 <- ggpubr::text_grob(paste0(Categories[j]," (",k,")"), size = 18, face = "bold")
+    title1 <- ggpubr::text_grob(paste0(Categories[j]," (",k,")"), size = 16, face = "bold")
     gridExtra::grid.arrange(grobs=plotlist[na.omit(l[(12*(k-1))+c(1:12)])-1],
-                            ncol=3,
-                            nrow=4,
+                            ncol=2,
+                            nrow=6,
                             top = title1)
     dev.off()
   }

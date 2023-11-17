@@ -27,7 +27,7 @@ ATAC <- function(data,year_start=NA,year_end_trend=NA,year_end_OL=NA,n_forecasts
     if (duration >=20){ # if the series is long enough, and if it was possible to fit a spline model then try AR(1) and AR(2) models
       fit1 <- brms::brm(y ~ s(x), autocor = cor_ar(p=1), data = data2, family=family, chains = max(3,nCores), cores = nCores, iter=niter) # AR1 pprocess
       fit2 <- brms::brm(y ~ s(x), autocor = cor_ar(p=2), data = data2, family=family, chains = max(3,nCores), cores = nCores, iter=niter) # AR2 pprocess
-      Loo <- c(brms::LOO(fit0)$estimates[3,1],brms::LOO(fit1)$estimates[3,1],,brms::LOO(fit2)$estimates[3,1]) # LOO scores for the three models
+      Loo <- c(brms::LOO(fit0)$estimates[3,1],brms::LOO(fit1)$estimates[3,1],brms::LOO(fit2)$estimates[3,1]) # LOO scores for the three models
       best_model <- which(Loo==min(Loo)) # identify the best model of the two models
     } else {
       best_model <- 1
@@ -43,7 +43,7 @@ ATAC <- function(data,year_start=NA,year_end_trend=NA,year_end_OL=NA,n_forecasts
     data3 <- data %>% filter((x>=year_start)&(x<=year_end_OL)) # dataset used to fit the model for OL
     if (best_model==1) fit <-brms::brm(y ~ s(x), data = data3, family=family, chains = max(3,nCores), cores = nCores, iter=niter) # No AR process
     if (best_model==2) fit <- brms::brm(y ~ s(x), autocor = cor_ar(p=1), data = data3, family=family, chains = max(3,nCores), cores = nCores, iter=niter) # AR1 pprocess
-    if (best_model==3) fit <- brms::brm(y ~ s(x), autocor = cor_ar(p=2), data = data3, family=family, chains = max(3,nCores), cores = nCores, iter=niter) # AR1 pprocess
+    if (best_model==3) fit <- brms::brm(y ~ s(x), autocor = cor_ar(p=2), data = data3, family=family, chains = max(3,nCores), cores = nCores, iter=niter) # AR2 pprocess
     model.OL <- fit
     data4 <- bind_rows(data3,tibble(x=(year_end_OL+1):(year_end_OL+n_forecasts),y=NA))  # dataset used to predict past observations and new obs (OL)
     OL.trend.brm <- as_tibble(predict(fit,newdata=data4,incl_autocor=FALSE)) # get the trend (without AR)
@@ -77,6 +77,8 @@ ggATAC <- function(results,backtransform=FALSE,trend=FALSE){
     pivot_wider(names_from = "param")
   gg <- ggplot(data=fit.wide,aes(x=year))
   if (dim(fit.wide)[2]>3) { #check that a model was actually fitted (enough columns with results)
+    gg <- gg +
+      geom_path(aes(y=trendOL),col='#FFB302',lwd=1,alpha=0.75,lty=1)
     if (sum(is.na(fit.wide$prediction)==FALSE)>=2){
     gg <- gg +
       geom_ribbon(aes(ymin=predQ2.5,ymax=predQ97.5),fill = "#104E8B", alpha=0.25) +
@@ -87,16 +89,15 @@ ggATAC <- function(results,backtransform=FALSE,trend=FALSE){
         geom_ribbon(aes(ymin=forecastQ2.5,ymax=forecastQ97.5),fill='#8B1A1A',alpha=0.25) +
         geom_ribbon(aes(ymin=forecastQ12.5,ymax=forecastQ87.5),fill='#8B1A1A',alpha=0.25) +
         geom_ribbon(aes(ymin=forecastQ25,ymax=forecastQ75),fill='#8B1A1A',alpha=0.25) +
-        geom_path(aes(y=forecast),col='#8B1A1A',lwd=1)
+        geom_path(aes(y=forecast),col='#8B1A1A',lwd=.6,lty=2)
     }
-    gg <- gg +
-      geom_path(aes(y=trendOL),col='#FFFACD',lwd=1,alpha=0.75)
+  }
+  if (trend==TRUE){
+    gg <- gg + geom_path(aes(y=trend),col='black',alpha=0.25,lwd=1.5) 
   }
   gg <- gg +
     geom_point(aes(y=observation),col = "#104E8B",pch=19,cex=1.5) + 
-    theme_bw()
-  if (trend==TRUE){
-    gg <- gg + geom_path(aes(y=trend),col='black',alpha=0.25,lwd=1.5) }
+    theme_bw() 
   return(gg)
 }
 
