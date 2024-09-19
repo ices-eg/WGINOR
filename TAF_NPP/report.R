@@ -13,8 +13,8 @@ NPP.annual <- read.taf(file.path(".","model","NPPannual.txt"))
 # 1 - multiple panel plot (individual years) with 8-day observations and hierarchical model 
 taf.png(file.path(".","report","IndividualYears.png"),width =2100, height =1485)
 gp1 <- ggplot() +
-  geom_path(aes(x=doy,y=NPP.pred0),data = NPP.series, size = 0.5, col = "deepskyblue") +
-  geom_path(aes(x=doy,y=NPP.pred),data = NPP.series, size = 1, col = "firebrick") +
+  geom_path(aes(x=doy,y=NPP.pred0),data = NPP.series, linewidth = 0.5, col = "deepskyblue") +
+  geom_path(aes(x=doy,y=NPP.pred),data = NPP.series, linewidth = 1, col = "firebrick") +
   geom_point(aes(x=doy,y=NPP.mean),data = NPP.series,size = 0.5, col = "black") +
   geom_ribbon(aes(x=doy,ymax=NPP.pred,ymin=0),data = NPP.series, fill = "firebrick",alpha=0.1) +
   xlim(c(1,365)) +

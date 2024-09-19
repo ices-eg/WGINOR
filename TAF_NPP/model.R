@@ -172,3 +172,4 @@ NPP.annual <- NPP.annual %>% # Construct the final NPP.annual table with total p
 
 write.taf(NPP.series,file.path(".","model","NPPseries.txt"))
 write.taf(NPP.annual,file.path(".","model","NPPannual.txt"))
+
