@@ -41,9 +41,9 @@ SalmonNNEAC,Salmon abundance(northern NEAC),count,Ecological component,TRUE
 BredfishB,Beaked redfish biomass,million tonnes,Ecological component,TRUE
 SaitheB,Saithe biomass,million tonnes,Ecological component,TRUE
 GhalibutB,Greenlan halibut biomass,million tonnes,Ecological component,TRUE
-PuffinStock,Puffins stock size,pair count,Ecological component,TRUE
-KittywakeStock,Kittywake stock size,pair count,Ecological component,TRUE
-GuillemotStock,Guillemot stock size,pair count,Ecological component,TRUE
+PuffinStock,Puffin pop. size,pair count,Ecological component,TRUE
+KittywakeStock,Kittywake pop. size,pair count,Ecological component,TRUE
+GuillemotStock,Common guillemot pop. size,pair count,Ecological component,TRUE
 NPPtotalC,NPPtotalC,gC.m-2.yr-1,Ecological component,TRUE
 NPPpeak,NPPpeak,day of year,Ecological component,TRUE
 NPPstart,NPPstart,day of year,Ecological component,TRUE

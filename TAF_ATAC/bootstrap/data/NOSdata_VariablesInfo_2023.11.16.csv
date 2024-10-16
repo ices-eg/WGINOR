@@ -17,13 +17,13 @@ ZooB.NBE,Zoo. biomass (Norw. Basin east),dry weight mg.m^-2,Ecological component
 ZooB.NBW,Zoo. biomass (Norw. Basin west),dry weight mg.m^-2,Ecological component,TRUE
 HerringR.age2,Herring recruitment,million indiv,Ecological component,TRUE
 BluewhitingR.age1,Blue whiting recruitment,million indiv,Ecological component,TRUE
-MackerelR.age2,Mackerel recruitment Age2,million tonnes,Ecological component,TRUE
-HerringB,Herring biomass,million tonnes,Ecological component,TRUE
-BluewhitingB,Blue whiting biomass,million tonnes,Ecological component,TRUE
-MackerelB,Mackerel biomass,million tonnes,Ecological component,TRUE
-HerringC,Herring catches,million tonnes,Pressure,TRUE
-MackerelC,Mackerel catches,million tonnes,Pressure,TRUE
-BluewhitingC,Blue whiting catches,million tonnes,Pressure,TRUE
+MackerelR.age2,Mackerel recruitment Age2,million indiv,Ecological component,TRUE
+HerringB,Herring biomass,tonnes,Ecological component,TRUE
+BluewhitingB,Blue whiting biomass,tonnes,Ecological component,TRUE
+MackerelB,Mackerel biomass,tonnes,Ecological component,TRUE
+HerringC,Herring catches,tonnes,Pressure,TRUE
+MackerelC,Mackerel catches,tonnes,Pressure,TRUE
+BluewhitingC,Blue whiting catches,tonnes,Pressure,TRUE
 HerringF,Herring fishing mortality,y^-1,Pressure,TRUE
 MackerelF,Mackerel fishing mortality,y^-1,Pressure,TRUE
 BluewhitingF,Blue whiting fishing mortality,y^-1,Pressure,TRUE
@@ -31,7 +31,7 @@ HerringW6,Herring weight at age 6,kg,Ecological component,FALSE
 BluewhitingW4,Bluewhiting weight at age 4,kg,Ecological component,FALSE
 MackerelW3,Mackerel weight at age 3,kg,Ecological component,FALSE
 SalmonNNEAC,Salmon abundance(northern NEAC),count,Ecological component,TRUE
-BredfishB,Beaked redfish biomass,million tonnes,Ecological component,TRUE
+BredfishB,Beaked redfish biomass,thousand tonnes,Ecological component,TRUE
 SaitheB,Saithe biomass,million tonnes,Ecological component,TRUE
 GhalibutB,Greenlan halibut biomass,million tonnes,Ecological component,TRUE
 PuffinStock,Puffin pop. size,pair count,Ecological component,TRUE

@@ -8,6 +8,7 @@ sourceTAF("utilities")
 
 mkdir("report")
 
+#load results
 load("./output/tables.Rdata")
 
 # Step 1: produce all individual ggplots
@@ -16,6 +17,7 @@ for (ycol in c(2:length(table.all))){ # loop on all time-series
   if (is_tibble(table.all[[ycol]])){
   plotlist[[ycol-1]]<-ggATAC(result=table.all[[ycol]])+
     xlim(c(1980,NA)) +
+    ylim(c(0,NA)) +
     ggtitle(paste0(info$FullName[ycol],
                    "\nData transformation: ",info$transformation[ycol],
                    "\nAutoregressive process: AR(",info$AR[ycol],")")) +
@@ -47,8 +49,6 @@ for(j in 1:length(Categories)){ # loop on categories
     dev.off()
   }
 }
-
-
 
 
 
