@@ -18,7 +18,16 @@ draft.data( # create an entry in data.bib (this will be implemented when running
   data.files = "NOSdata_TREC_20220603.txt",
   data.scripts =NULL,
   originator = "Lucie Buttay",
-  title = "Time series used in WGINOR in 2021",
+  title = "Time series used in WGINOR in 2022",
+  file = TRUE,
+  append = TRUE
+)
+
+draft.data( # create an entry in data.bib (this will be implemented when running taf.bootstrap)
+  data.files = "WGINOR_Dataset_2024.xlsx",
+  data.scripts =NULL,
+  originator = "WGINOR group",
+  title = "Time series used in WGINOR in 2024",
   file = TRUE,
   append = TRUE
 )

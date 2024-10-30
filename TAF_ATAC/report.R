@@ -15,14 +15,17 @@ load("./output/tables.Rdata")
 plotlist<-list()
 for (ycol in c(2:length(table.all))){ # loop on all time-series
   if (is_tibble(table.all[[ycol]])){
-  plotlist[[ycol-1]]<-ggATAC(result=table.all[[ycol]])+
-    xlim(c(1980,NA)) +
-    ylim(c(0,NA)) +
-    ggtitle(paste0(info$FullName[ycol],
-                   "\nData transformation: ",info$transformation[ycol],
-                   "\nAutoregressive process: AR(",info$AR[ycol],")")) +
-    ylab(paste0("units: ",info$unit[ycol])) +
-    theme(plot.title = element_text(size = 8))
+    plotlist[[ycol-1]]<-ggATAC(result=table.all[[ycol]])+
+      xlim(c(1980,NA)) +
+      ggtitle(paste0(info$FullName[ycol],
+                     "\nData transformation: ",info$transformation[ycol],
+                     "\nAutoregressive process: AR(",info$AR[ycol],")")) +
+      ylab(paste0("units: ",info$unit[ycol])) +
+      theme(plot.title = element_text(size = 8))
+    if (info$transformation[ycol]==TRUE) {
+      plotlist[[ycol-1]] <- plotlist[[ycol-1]] +
+        ylim(c(0,NA))
+    }
   } else {
     plotlist[[ycol-1]]<-ggplot() +
       ggtitle(paste0(info$FullName[ycol],
