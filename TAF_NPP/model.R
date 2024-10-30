@@ -167,7 +167,10 @@ NPP.annual <- NPP.annual %>% # Construct the final NPP.annual table with total p
   left_join(timing,by="year") %>%
   left_join(timingstart,by="year") %>%
   left_join(timingend,by="year") %>%
-  mutate(duration=end-start)
+  mutate(duration=end-start,
+         NPP.mean=round(NPP.mean,1),
+         totNPP=round(totNPP,1),
+         peak=round(peak,0))
 # Note that the totNPP estimates are in gC.m-2.y-1, while the mean estimates are in mgC.m-2.d-1
 
 write.taf(NPP.series,file.path(".","model","NPPseries.txt"))
