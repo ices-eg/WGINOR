@@ -1,66 +1,66 @@
-ID,FullName,unit,category,transformation
-Year,Year,NA,NA,FALSE
-NAO1,Nao_djfm,unitless,Climate,FALSE
-SPGWinter,spg_index (winter cent),unitless,Climate,FALSE
-NLGyre,Norw-Lof gyre index,NA,Climate,FALSE
-SvinoyTemp,Svinoy-coreT,°C,Climate,FALSE
-SvinoySal,Svinoy-coreS,psu,Climate,FALSE
-ArcticWater,Arctic Water in NS,unitless,Climate,FALSE
-RelativeHearContent,Relative Heat Content,108J·m-2,Climate,FALSE
-RelativeFreshWaterContent,Relative Fresh Water content,m,Climate,FALSE
-LanganesTemp,Temp-Langanes-East7,°C,Climate,FALSE
-LanganesSal,Salinity-Langanes-East7,psu,Climate,FALSE
-NPP,Net Primary Production,g.C.m-2.yr-1,Ecological,FALSE
-NPPPeakTiming,Timing Peak Net Primary Production,day of the year,Ecological,FALSE
-ZooBMay,Zooplankton B,dry weight mg.m-2,Ecological,TRUE
-ZooBLBEMay,Zooplankton Biomass Lofoten basin east - May,dry weight mg.m-2,Ecological,TRUE
-ZooBLBWMay,Zooplankton Biomass Lofoten basin west - May,dry weight mg.m-2,Ecological,TRUE
-ZooBNBEMay,Zooplankton Biomass Norwegian basin east - May,dry weight mg.m-2,Ecological,TRUE
-ZooBNBWMay,Zooplankton Biomass Norwegian basin west - May,dry weight mg.m-2,Ecological,TRUE
-ZooBJuly,Zooplankton biomass 4 polygons combined - July,dry weight mg.m-2,Ecological,TRUE
-ZooBLBEJuly,Zooplankton biomass Lofotofen basin east - July,dry weight mg.m-2,Ecological,TRUE
-ZooBLBWJuly,Zooplankton Biomass Lofoten basin west - July,dry weight mg.m-2,Ecological,TRUE
-ZooBNBEJuly,Zooplankton Biomass Norwegian basin east - July,dry weight mg.m-2,Ecological,TRUE
-ZooBNBWJuly,Zooplankton Biomass Norwegian basin west - July,dry weight mg.m-2,Ecological,TRUE
-HerringRecruitmentValue,Herring Recruitment - age 2,million individuals,Ecological,TRUE
-BlueWhitingRecruitmentValue,Blue whiting Recruitment - age 1,million individuals,Ecological,TRUE
-MackerelRecruitmentValue,Mackerel Recruitment - age 2,million individuals,Ecological,TRUE
-HerringSSBValue,Herring Biomass,metric tonne,Ecological,TRUE
-BlueWhitingSSBValue,Blue whiting Biomass,metric tonne,Ecological,TRUE
-MackerelSSBValue,Mackerel Biomass,metric tonne,Ecological,TRUE
-HerringFValue,Fishing Mortality - Herring,yr-1,Pressure,TRUE
-BlueWhitingFValue,Fishing Mortality - Blue whiting,yr-1,Pressure,TRUE
-MackerelFValue,Fishing Mortality - Mackerel,yr-1,Pressure,TRUE
-HerringCatch,Herring commercial catch,metric tonne,Pressure,TRUE
-BlueWhitingCatch,Blue whiting commercial catch,metric tonne,Pressure,TRUE
-MackerelCatch,Mackerel commercial catch,metric tonne,Pressure,TRUE
-HerringWeight,Herring average weight at age 6 in the stock,kg,Ecological,FALSE
-BlueWhitingWeight,Blue whiting average weight at age 4 in the stock,kg,Ecological,FALSE
-MackerelWeight,Mackerel average weight at age 3 in the stock,kg,Ecological,FALSE
-RedfishSSB,Beaked redfish Spawning Stock Biomass,metric tonne,Ecological,TRUE
-RedfishCatch,Beaked redfish commercial catch,metric tonne,Pressure,TRUE
-Puffin,Number of Atlantic puffin,pair count,Ecological,TRUE
-Kittywake,Number of black-legged kittiwake,pair count,Ecological,TRUE
-Guillemot,Number of common guillemot,pair count,Ecological,TRUE
-MinkeCatch,Minke whale Catches,count,Pressure,TRUE
-Oil,Oil production,thousand Sm3,Sector - Activity - Economy,FALSE
-Gas,Gas production,million Sm3,Sector - Activity - Economy,FALSE
-FirstHandPrice_Herring,Herring first-hand price,NOK,Sector - Activity - Economy,FALSE
-FirstHandPrice_Atlmackerel,Mackerel  first-hand price,NOK,Sector - Activity - Economy,FALSE
-FirstHandPrice_BlueWhiting,Blue whiting first-hand price,NOK,Sector - Activity - Economy,FALSE
-FirstHandPrice_AtlanticCod,Atlantic cod first-hand price,NOK,Sector - Activity - Economy,FALSE
-FirstHandPrice_Haddock,Haddock first-hand price,NOK,Sector - Activity - Economy,FALSE
-FirstHandPrice_Saithe,Saithe first-hand price,NOK,Sector - Activity - Economy,FALSE
-FirstHandPrice_AtlRedfish,Beaked redfish first-hand price,NOK,Sector - Activity - Economy,FALSE
-CatchValue_Herring,Herring catch value,thousand NOK,Sector - Activity - Economy,FALSE
-CatchValue_Atlmackerel,Mackerel  catch value,thousand NOK,Sector - Activity - Economy,FALSE
-CatchValue_Bluewhiting,Blue whiting catch value,thousand NOK,Sector - Activity - Economy,FALSE
-CatchValue_Atlanticcod,Atlantic cod catch value,thousand NOK,Sector - Activity - Economy,FALSE
-CatchValue_Haddock,Haddock catch value,thousand NOK,Sector - Activity - Economy,FALSE
-CatchValue_Saithe,Saithe catch value,thousand NOK,Sector - Activity - Economy,FALSE
-CatchValue_AtlRedfish,Beaked redfish catch value,thousand NOK,Sector - Activity - Economy,FALSE
-ShippingCO2,Release CO2 from shipping,tonne CO2,Sector - Activity - Economy,FALSE
-NbFishingBoats,Number of fishing boats,count,Sector - Activity - Economy,FALSE
-PowerFishingBoats,Engine power,horse power,Sector - Activity - Economy,FALSE
-NbFishermen,Number of fishermen,count,Sector - Activity - Economy,TRUE
-Ryther,Total Catch all species combined in ICES Iia,tonne·km-2,Pressure,TRUE
+"ID","FullName","Unit","LastUpdate","Link","Source","Description","Contact","Email","Category","Transformation"
+"Year","Year",NA,NA,NA,NA,NA,NA,NA,NA,FALSE
+"NAO1","Nao_djfm","unitless",NA,"https://climatedataguide.ucar.edu/climate-data/hurrell-north-atlantic-oscillation-nao-index-station-based","Hurrel winter NAO index,","NAO Station-Based Index (DJFM)","Øystein skagseth, IMR","oystein.skagseth@hi.no","Climate",FALSE
+"SPGWinter","spg_index (winter cent)","unitless",NA,NA,NA,NA,"Øystein skagseth, IMR","oystein.skagseth@hi.no","Climate",FALSE
+"NLGyre","Norw-Lof gyre index",NA,NA,NA,NA,NA,"Øystein skagseth, IMR","oystein.skagseth@hi.no","Climate",FALSE
+"SvinoyTemp","Svinoy-coreT","°C",NA,NA,NA,NA,"Kjell Arne","kjell.arne.mork@hi.no","Climate",FALSE
+"SvinoySal","Svinoy-coreS","psu",NA,NA,NA,NA,"Kjell Arne","kjell.arne.mork@hi.no","Climate",FALSE
+"ArcticWater","Arctic Water in NS","104km3","2024",NA,NA,NA,"Øystein skagseth, IMR","oystein.skagseth@hi.no","Climate",FALSE
+"RelativeHearContent","Relative Heat Content","108J·m-2","2024",NA,NA,NA,"Kjell Arne","Kjell Arne","Climate",FALSE
+"RelativeFreshWaterContent","Relative Fresh Water content","m","2024",NA,NA,NA,"Kjell Arne","Kjell Arne","Climate",FALSE
+"LanganesTemp","Temp-Langanes-East7","°C","2024","Not open access data","MFRI, Iceland","Average temperature at 80-120m at MFRI Langanes hydrography transect station #7, sampled in May/June","Eygló Ólafsdóttir, MFRI","eyglo.olafsdottir@hafogvatn.is","Climate",FALSE
+"LanganesSal","Salinity-Langanes-East7","psu","2024","Not open access data","MFRI, Iceland","Average salinity at 80-120m at MFRI Langanes hydrography transect station #7, sampled in May/June","Eygló Ólafsdóttir, MFRI","eyglo.olafsdottir@hafogvatn.is","Climate",FALSE
+"NPP","Net Primary Production","g.C.m-2.yr-1","2024","http://orca.science.oregonstate.edu/npp_products.php","Oregon state university. Ocean productivity (VGPM model)","Primary production integrated over the production period. Derived from weekly satellite estimates using the standard VGPM model","Benjamin Planque","benjamin.planque@hi.no","Ecological",FALSE
+"NPPPeakTiming","Timing Peak Net Primary Production","day of the year","2024","http://orca.science.oregonstate.edu/npp_products.php","Oregon state university. Ocean productivity (VGPM model)","Modelled timing of the peak of primary production","Benjamin Planque","benjamin.planque@hi.no","Ecological",FALSE
+"ZooBMay","Zooplankton B","dry weight mg.m-2",NA,"Data from the IESNS surveys",NA,NA,"Cecilie Broms, IMR, Bergen","cecilie.thorsen.broms@hi.no","Ecological",TRUE
+"ZooBLBEMay","Zooplankton Biomass Lofoten basin east - May","dry weight mg.m-2",NA,"Data from the IESNS surveys",NA,NA,"Cecilie Broms, IMR, Bergen","cecilie.thorsen.broms@hi.no","Ecological",TRUE
+"ZooBLBWMay","Zooplankton Biomass Lofoten basin west - May","dry weight mg.m-2",NA,"Data from the IESNS surveys",NA,NA,"Cecilie Broms, IMR, Bergen","cecilie.thorsen.broms@hi.no","Ecological",TRUE
+"ZooBNBEMay","Zooplankton Biomass Norwegian basin east - May","dry weight mg.m-2",NA,"Data from the IESNS surveys",NA,NA,"Cecilie Broms, IMR, Bergen","cecilie.thorsen.broms@hi.no","Ecological",TRUE
+"ZooBNBWMay","Zooplankton Biomass Norwegian basin west - May","dry weight mg.m-2",NA,"Data from the IESNS surveys",NA,NA,"Cecilie Broms, IMR, Bergen","cecilie.thorsen.broms@hi.no","Ecological",TRUE
+"ZooBJuly","Zooplankton biomass 4 polygons combined - July","dry weight mg.m-2",NA,"Data from the IESSNS surveys",NA,NA,"Cecilie Broms, IMR, Bergen","cecilie.thorsen.broms@hi.no","Ecological",TRUE
+"ZooBLBEJuly","Zooplankton biomass Lofotofen basin east - July","dry weight mg.m-2",NA,"Data from the IESSNS surveys",NA,NA,"Cecilie Broms, IMR, Bergen","cecilie.thorsen.broms@hi.no","Ecological",TRUE
+"ZooBLBWJuly","Zooplankton Biomass Lofoten basin west - July","dry weight mg.m-2",NA,"Data from the IESSNS surveys",NA,NA,"Cecilie Broms, IMR, Bergen","cecilie.thorsen.broms@hi.no","Ecological",TRUE
+"ZooBNBEJuly","Zooplankton Biomass Norwegian basin east - July","dry weight mg.m-2",NA,"Data from the IESSNS surveys",NA,NA,"Cecilie Broms, IMR, Bergen","cecilie.thorsen.broms@hi.no","Ecological",TRUE
+"ZooBNBWJuly","Zooplankton Biomass Norwegian basin west - July","dry weight mg.m-2",NA,"Data from the IESSNS surveys",NA,NA,"Cecilie Broms, IMR, Bergen","cecilie.thorsen.broms@hi.no","Ecological",TRUE
+"HerringRecruitmentValue","Herring Recruitment - age 2","million individuals","2024","https://www.ices.dk/community/groups/pages/wgwide.aspx","ICES Working Group on Widely Distributed Stocks. ICES advice 2023, Table 10.","Results of annual analytical stock assessment released by ICES in October.","Sigurvin Bjarnason, MFRI, Iceland","sigurvin.bjarnason@hafogvatn.is","Ecological",TRUE
+"BlueWhitingRecruitmentValue","Blue whiting Recruitment - age 1","million individuals","2024","https://www.ices.dk/community/groups/pages/wgwide.aspx","ICES Working Group on Widely Distributed Stocks. ICES advice 2023, Table 10.","Results of annual analytical stock assessment released by ICES in October.","Sigurvin Bjarnason, MFRI, Iceland","sigurvin.bjarnason@hafogvatn.is","Ecological",TRUE
+"MackerelRecruitmentValue","Mackerel Recruitment - age 2","million individuals","2024","https://www.ices.dk/community/groups/pages/wgwide.aspx","ICES Working Group on Widely Distributed Stocks. ICES advice 2023, Table 10.","Results of annual analytical stock assessment released by ICES in October.","Sigurvin Bjarnason, MFRI, Iceland","sigurvin.bjarnason@hafogvatn.is","Ecological",TRUE
+"HerringSSBValue","Herring Biomass","metric tonne","2024","https://www.ices.dk/community/groups/pages/wgwide.aspx","ICES Working Group on Widely Distributed Stocks. ICES advice 2023, Table 10.","Results of annual analytical stock assessment released by ICES in October.","Sigurvin Bjarnason, MFRI, Iceland","sigurvin.bjarnason@hafogvatn.is","Ecological",TRUE
+"BlueWhitingSSBValue","Blue whiting Biomass","metric tonne","2024","https://www.ices.dk/community/groups/pages/wgwide.aspx","ICES Working Group on Widely Distributed Stocks. ICES advice 2023, Table 10.","Results of annual analytical stock assessment released by ICES in October.","Sigurvin Bjarnason, MFRI, Iceland","sigurvin.bjarnason@hafogvatn.is","Ecological",TRUE
+"MackerelSSBValue","Mackerel Biomass","metric tonne","2024","https://www.ices.dk/community/groups/pages/wgwide.aspx","ICES Working Group on Widely Distributed Stocks. ICES advice 2023, Table 10.","Results of annual analytical stock assessment released by ICES in October.","Sigurvin Bjarnason, MFRI, Iceland","sigurvin.bjarnason@hafogvatn.is","Ecological",TRUE
+"HerringFValue","Fishing Mortality - Herring","yr-1","2024","https://www.ices.dk/community/groups/pages/wgwide.aspx","ICES Working Group on Widely Distributed Stocks. ICES advice 2023, Table 10.","Results of annual analytical stock assessment released by ICES in October.","Sigurvin Bjarnason, MFRI, Iceland","sigurvin.bjarnason@hafogvatn.is","Pressure",TRUE
+"BlueWhitingFValue","Fishing Mortality - Blue whiting","yr-1","2024","https://www.ices.dk/community/groups/pages/wgwide.aspx","ICES Working Group on Widely Distributed Stocks. ICES advice 2023, Table 10.","Results of annual analytical stock assessment released by ICES in October.","Sigurvin Bjarnason, MFRI, Iceland","sigurvin.bjarnason@hafogvatn.is","Pressure",TRUE
+"MackerelFValue","Fishing Mortality - Mackerel","yr-1","2024","https://www.ices.dk/community/groups/pages/wgwide.aspx","ICES Working Group on Widely Distributed Stocks. ICES advice 2023, Table 10.","Results of annual analytical stock assessment released by ICES in October.","Sigurvin Bjarnason, MFRI, Iceland","sigurvin.bjarnason@hafogvatn.is","Pressure",TRUE
+"HerringCatch","Herring commercial catch","metric tonne","2024","https://www.ices.dk/community/groups/pages/wgwide.aspx","ICES Working Group on Widely Distributed Stocks. ICES advice 2023, Table 10.","Input for annual analytical stock assessment released by ICES in October. Sum of official national records of commercial catchs as complied by ICES WGWIDE annually.","Sigurvin Bjarnason, MFRI, Iceland","sigurvin.bjarnason@hafogvatn.is","Pressure",TRUE
+"BlueWhitingCatch","Blue whiting commercial catch","metric tonne","2024","https://www.ices.dk/community/groups/pages/wgwide.aspx","ICES Working Group on Widely Distributed Stocks. ICES advice 2023, Table 10.","Input for annual analytical stock assessment released by ICES in October. Sum of official national records of commercial catchs as complied by ICES WGWIDE annually.","Sigurvin Bjarnason, MFRI, Iceland","sigurvin.bjarnason@hafogvatn.is","Pressure",TRUE
+"MackerelCatch","Mackerel commercial catch","metric tonne","2024","https://www.ices.dk/community/groups/pages/wgwide.aspx","ICES Working Group on Widely Distributed Stocks. ICES advice 2023, Table 10.","Input for annual analytical stock assessment released by ICES in October. Sum of official national records of commercial catchs as complied by ICES WGWIDE annually.","Sigurvin Bjarnason, MFRI, Iceland","sigurvin.bjarnason@hafogvatn.is","Pressure",TRUE
+"HerringWeight","Herring average weight at age 6 in the stock","kg","2024","https://www.ices.dk/community/groups/pages/wgwide.aspx","WGWIDE report , table 4.4.4.2 in 2022.","Input for annual analytical stock assessment released by ICES in October. Data compiled by WGWIDE. The mean weight-at-age in the stock was based on the acoustic survey (ICES code) in the wintering area until 2008. Since then, the mean weight-at-age in the stock was derived from samples taken in the fishery in the same area and at the same time as the wintering surveys were conducted in.","Sigurvin Bjarnason, MFRI, Iceland","sigurvin.bjarnason@hafogvatn.is","Ecological",FALSE
+"BlueWhitingWeight","Blue whiting average weight at age 4 in the stock","kg","2024","https://www.ices.dk/community/groups/pages/wgwide.aspx","WGWIDE report, table 2.3.4.1 in 2022.","Input for annual analytical stock assessment released by ICES in October. Data compiled by WGWIDE. The weight-at-age for the stock is assumed the same as the weight-at-age for the catch. Weight-at-age for the total catch is calculated using catch-at-age data submitted annually to WGWIDE by national data providers. (Anna: get more details about this is calculated from Patricia).","Sigurvin Bjarnason, MFRI, Iceland","sigurvin.bjarnason@hafogvatn.is","Ecological",FALSE
+"MackerelWeight","Mackerel average weight at age 3 in the stock","kg","2024","https://www.ices.dk/community/groups/pages/wgwide.aspx","WGWIDE report in table 8.7.1.4 in 2021.","Input for annual analytical stock assessment released by ICES in October. Data compile by WGWIDE. Weight-at-age in the stock calculated as the average of the weight-at-age in three areas, corresponding to definition of the former spawning components, weighted by the relative mackerel biomass in each area (as estimated by the 2022 egg survey for the southern and western areas and the 2017 egg survey for the North Sea area). Mean weight-at-age in 2022 for the western area are estimated from Dutch, Irish and German commercial catch data, the biological sampling data taken during the egg surveys and during the Norwegian tagging survey. Only samples corresponding to mature fish, from areas and periods corresponding to spawning, as defined at the 2014 benchmark assessment (ICES, 2014) and laid out in the Stock Annex, were used to compute the mean weight-at-age in the western spawning area. For the North Sea area, mean weight-at-age in 2022 were calculated from samples of the commercial catches collected from Divisions 4.a and 4.b in the second quarter of 2022. Stock weights for the southern area, are based on samples from the Spanish catches and surveys in Divisions 8.c and 9a in the 2nd quarter of the year. The mean weights in the three area and in the stock in 2022 are shown in table 8.5.2.","Sigurvin Bjarnason, MFRI, Iceland","sigurvin.bjarnason@hafogvatn.is","Ecological",FALSE
+"RedfishSSB","Beaked redfish Spawning Stock Biomass","metric tonne","2024",NA,NA,NA,"Benjamin","benjamin.planque@hi.no","Ecological",TRUE
+"RedfishCatch","Beaked redfish commercial catch","metric tonne","2024",NA,NA,NA,"Benjamin","benjamin.planque@hi.no","Pressure",TRUE
+"Puffin","Number of Atlantic puffin","pair count","2024",NA,NA,NA,NA,"tycho@nina.no","Ecological",TRUE
+"Kittiwake","Number of black-legged kittiwake","pair count","2024",NA,NA,NA,NA,"tycho@nina.no","Ecological",TRUE
+"Guillemot","Number of common guillemot","pair count","2024",NA,NA,NA,NA,"tycho@nina.no","Ecological",TRUE
+"MinkeCatch","Minke whale Catches","count","2024",NA,NA,NA,"Lucie Buttay","lucie.buttay@uit.no","Pressure",TRUE
+"Oil","Oil production","thousand Sm3","2024",NA,NA,NA,"Lucie Buttay","lucie.buttay@uit.no","Sector - Activity - Economy",FALSE
+"Gas","Gas production","million Sm3","2024",NA,NA,NA,"Lucie Buttay","lucie.buttay@uit.no","Sector - Activity - Economy",FALSE
+"FirstHandPrice_Herring","Herring first-hand price","NOK","2024",NA,NA,NA,"Lucie Buttay","lucie.buttay@uit.no","Sector - Activity - Economy",FALSE
+"FirstHandPrice_Atlmackerel","Mackerel  first-hand price","NOK","2024",NA,NA,NA,"Lucie Buttay","lucie.buttay@uit.no","Sector - Activity - Economy",FALSE
+"FirstHandPrice_BlueWhiting","Blue whiting first-hand price","NOK","2024",NA,NA,NA,"Lucie Buttay","lucie.buttay@uit.no","Sector - Activity - Economy",FALSE
+"FirstHandPrice_AtlanticCod","Atlantic cod first-hand price","NOK","2024",NA,NA,NA,"Lucie Buttay","lucie.buttay@uit.no","Sector - Activity - Economy",FALSE
+"FirstHandPrice_Haddock","Haddock first-hand price","NOK","2024",NA,NA,NA,"Lucie Buttay","lucie.buttay@uit.no","Sector - Activity - Economy",FALSE
+"FirstHandPrice_Saithe","Saithe first-hand price","NOK","2024",NA,NA,NA,"Lucie Buttay","lucie.buttay@uit.no","Sector - Activity - Economy",FALSE
+"FirstHandPrice_AtlRedfish","Beaked redfish first-hand price","NOK","2024",NA,NA,NA,"Lucie Buttay","lucie.buttay@uit.no","Sector - Activity - Economy",FALSE
+"CatchValue_Herring","Herring catch value","thousand NOK","2024",NA,NA,NA,"Lucie Buttay","lucie.buttay@uit.no","Sector - Activity - Economy",FALSE
+"CatchValue_Atlmackerel","Mackerel  catch value","thousand NOK","2024",NA,NA,NA,"Lucie Buttay","lucie.buttay@uit.no","Sector - Activity - Economy",FALSE
+"CatchValue_Bluewhiting","Blue whiting catch value","thousand NOK","2024",NA,NA,NA,"Lucie Buttay","lucie.buttay@uit.no","Sector - Activity - Economy",FALSE
+"CatchValue_Atlanticcod","Atlantic cod catch value","thousand NOK","2024",NA,NA,NA,"Lucie Buttay","lucie.buttay@uit.no","Sector - Activity - Economy",FALSE
+"CatchValue_Haddock","Haddock catch value","thousand NOK","2024",NA,NA,NA,"Lucie Buttay","lucie.buttay@uit.no","Sector - Activity - Economy",FALSE
+"CatchValue_Saithe","Saithe catch value","thousand NOK","2024",NA,NA,NA,"Lucie Buttay","lucie.buttay@uit.no","Sector - Activity - Economy",FALSE
+"CatchValue_AtlRedfish","Beaked redfish catch value","thousand NOK","2024",NA,NA,NA,"Lucie Buttay","lucie.buttay@uit.no","Sector - Activity - Economy",FALSE
+"ShippingCO2","Release CO2 from shipping","tonne CO2","2023",NA,NA,NA,"Lucie Buttay","lucie.buttay@uit.no","Sector - Activity - Economy",FALSE
+"NbFishingBoats","Number of fishing boats","count","2023",NA,NA,NA,"Lucie Buttay","lucie.buttay@uit.no","Sector - Activity - Economy",FALSE
+"PowerFishingBoats","Engine power","horse power","2023",NA,NA,NA,"Lucie Buttay","lucie.buttay@uit.no","Sector - Activity - Economy",FALSE
+"NbFishermen","Number of fishermen","count","2023",NA,NA,NA,"Lucie Buttay","lucie.buttay@uit.no","Sector - Activity - Economy",TRUE
+"Ryther","Total Catch all species combined in ICES Iia","tonne·km-2","2024",NA,NA,NA,"Lucie Buttay","lucie.buttay@uit.no","Pressure",TRUE

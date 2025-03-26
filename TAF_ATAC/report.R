@@ -18,18 +18,18 @@ for (ycol in c(2:length(table.all))){ # loop on all time-series
     plotlist[[ycol-1]]<-ggATAC(result=table.all[[ycol]])+
       xlim(c(1980,NA)) +
       ggtitle(paste0(info$FullName[ycol],
-                     "\nData transformation: ",info$transformation[ycol],
+                     "\nData transformation: ",info$Transformation[ycol],
                      "\nAutoregressive process: AR(",info$AR[ycol],")")) +
-      ylab(paste0("units: ",info$unit[ycol])) +
+      ylab(paste0("units: ",info$Unit[ycol])) +
       theme(plot.title = element_text(size = 8))
-    if (info$transformation[ycol]==TRUE) {
+    if (info$Transformation[ycol]==TRUE) {
       plotlist[[ycol-1]] <- plotlist[[ycol-1]] +
         ylim(c(0,NA))
     }
   } else {
     plotlist[[ycol-1]]<-ggplot() +
       ggtitle(paste0(info$FullName[ycol],
-                     "\nData transformation: ",info$transformation[ycol],
+                     "\nData transformation: ",info$Transformation[ycol],
                      "\nAutoregressive process: AR(",info$AR[ycol],")")) +
       theme(plot.title = element_text(size = 8))
     
@@ -37,10 +37,10 @@ for (ycol in c(2:length(table.all))){ # loop on all time-series
 }
 
 # Step 2: arrange ggplot by data categories and output them in png files
-Categories <- unique(na.omit(info$category)) # identify data categories
+Categories <- unique(na.omit(info$Category)) # identify data categories
 Categories <- Categories[Categories!="NaN"] # remove NaN as a category
 for(j in 1:length(Categories)){ # loop on categories
-  l<-which(info$category==Categories[j]) # id's of plots in the category
+  l<-which(info$Category==Categories[j]) # id's of plots in the category
   NbFig<-ceiling(length(l)/12) # Nb of png to be created for a category
   for(k in 1:NbFig){ # loop on pages within categories
     taf.png(paste0("ATAC_series_",Categories[j],"_plot",k),width =2100, height =2970)
