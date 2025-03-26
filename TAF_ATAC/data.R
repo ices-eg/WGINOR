@@ -12,9 +12,12 @@ sheets <- excel_sheets(datafile) # read the data from the "standard" TAF data pa
 info <- read_xlsx(taf.data.path("WGINOR_Dataset_2024.xlsx"),skip=3,sheets[1]) %>%
   rename(ID=`ShortName (no special characters, no space)`,
          FullName=`Variable name`,
-         unit=Unit,
-         category=ATACCategory) %>%
-  select(ID,FullName,unit,category,ATAC) %>%
+         LastUpdate=`last update`,
+         Link=`Ressource link, doi???`,
+         Contact=`Contact person`,
+         Email=email,
+         Category=ATACCategory) %>%
+  select(ID,FullName,Unit,LastUpdate,Link,Source,Description,Contact,Email,Category,ATAC) %>%
   filter(ATAC!=0) %>%
   mutate(transformation = case_when(
     ATAC == 1 ~ FALSE,
@@ -29,4 +32,4 @@ series <- read_xlsx(taf.data.path("WGINOR_Dataset_2024.xlsx"),sheets[2]) %>%
 
 series[,info$transformation] <- series[,info$transformation]^0.25 # transform selected data series using double square root (c(FALSE) is to account for the "Year" column)
 write.taf(series, dir = "data", file = "series.csv") # write the data series 
-write.taf(info, dir = "data", file = "info.csv") # write the meta-data
+write.taf(info, dir = "data", file = "info.csv", quote=TRUE) # write the meta-data
