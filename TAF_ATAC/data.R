@@ -6,30 +6,33 @@ require(readxl)
 require(tidyverse)
 
 mkdir("data")
-datafile <- taf.data.path("WGINOR_Dataset_2024.xlsx")
+datafile <- taf.data.path("WGINOR_Dataset_2025.xlsx")
 
 sheets <- excel_sheets(datafile) # read the data from the "standard" TAF data path (~/bootstrap/data/tree.csv)
-info <- read_xlsx(taf.data.path("WGINOR_Dataset_2024.xlsx"),skip=3,sheets[1]) %>%
-  rename(ID=`ShortName (no special characters, no space)`,
-         FullName=`Variable name`,
-         LastUpdate=`last update`,
-         Link=`Ressource link, doi???`,
-         Contact=`Contact person`,
-         Email=email,
-         Category=ATACCategory) %>%
-  select(ID,FullName,Unit,LastUpdate,Link,Source,Description,Contact,Email,Category,ATAC) %>%
-  filter(ATAC!=0) %>%
+info <- read_xlsx(datafile, skip = 3, sheets[1]) %>%
+  rename(
+    ID = `ShortName (no special characters, no space)`,
+    FullName = `Variable name`,
+    LastUpdate = `last update`,
+    Link = `Ressource link, doi`,
+    Contact = `Contact person`,
+    Email = email,
+    Category = ATACCategory
+  ) %>%
+  select(ID, FullName, Unit, LastUpdate, Link, Source, Description, Contact, Email, Category, ATAC) %>%
+  filter(ATAC != 0) %>%
   mutate(Transformation = case_when(
     ATAC == 1 ~ FALSE,
-    ATAC == 2 ~ TRUE)) %>%
+    ATAC == 2 ~ TRUE
+  )) %>%
   select(-ATAC) %>%
   mutate_all(as.character) %>%
-  mutate(Transformation=as.logical(Transformation)) %>%
-  add_row(ID="Year",FullName="Year",Transformation=FALSE,.before=1)
-series <- read_xlsx(taf.data.path("WGINOR_Dataset_2024.xlsx"),sheets[2]) %>%
+  mutate(Transformation = as.logical(Transformation)) %>%
+  add_row(ID = "Year", FullName = "Year", Transformation = FALSE, .before = 1)
+series <- read_xlsx(datafile, sheets[2]) %>%
   select(info$ID) %>%
   mutate_all(as.numeric)
 
-series[,info$Transformation] <- series[,info$Transformation]^0.25 # transform selected data series using double square root (c(FALSE) is to account for the "Year" column)
-write.taf(series, dir = "data", file = "series.csv") # write the data series 
-write.taf(info, dir = "data", file = "info.csv", quote=TRUE) # write the meta-data
+series[, info$Transformation] <- series[, info$Transformation]^0.25 # transform selected data series using double square root (c(FALSE) is to account for the "Year" column)
+write.taf(series, dir = "data", file = "series.csv") # write the data series
+write.taf(info, dir = "data", file = "info.csv", quote = TRUE) # write the meta-data

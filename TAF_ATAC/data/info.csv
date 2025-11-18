@@ -1,7 +1,7 @@
 "ID","FullName","Unit","LastUpdate","Link","Source","Description","Contact","Email","Category","Transformation"
 "Year","Year",NA,NA,NA,NA,NA,NA,NA,NA,FALSE
-"NAO1","NAO (Dec-Mar) UCAR",NA,"2023","https://climatedataguide.ucar.edu/climate-data/hurrell-north-atlantic-oscillation-nao-index-station-based","Hurrel winter NAO index,","NAO Station-Based Index (DJFM)","Øystein skagseth, IMR","oystein.skagseth@hi.no","Climate",FALSE
-"SPGWinter","SPG Index (Winter)",NA,NA,NA,NA,NA,"Øystein skagseth, IMR","oystein.skagseth@hi.no","Climate",FALSE
+"NAO3","NAO (Dec-Mar) UCAR - EOF",NA,"2025","Changed to Hurrell pc based index https://climatedataguide.ucar.edu/sites/default/files/2024-04/nao_pc_djfm.txt","Hurrel winter pc based",NA,"Øystein skagseth, IMR","oystein.skagseth@hi.no","Climate",FALSE
+"SPGWinter","SPG Index (Winter)",NA,"2024",NA,NA,NA,"Øystein skagseth, IMR","oystein.skagseth@hi.no","Climate",FALSE
 "NLGyre","Norw-Lof Gyre Index",NA,NA,NA,NA,NA,"Øystein skagseth, IMR","oystein.skagseth@hi.no","Climate",FALSE
 "SvinoyTemp","Svinoy Core Temperature","°C",NA,NA,NA,NA,"Kjell Arne","kjell.arne.mork@hi.no","Climate",FALSE
 "SvinoySal","Svinoy Core Salinity","psu",NA,NA,NA,NA,"Kjell Arne","kjell.arne.mork@hi.no","Climate",FALSE
