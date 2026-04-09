@@ -33,7 +33,7 @@ prefits <- preATAC(inputseries,
   n_forecasts = n_forecasts
 )
 # run model
-for (ycol in c(2:dim(series)[2])) { # loop on all time-series
+for (ycol in c(51:dim(series)[2])) { # loop on all time-series
   inputseries <- series %>%
     transmute(x = Year, y = .[, ycol][[1]]) %>%
     filter(is.na(y) == 0) %>%

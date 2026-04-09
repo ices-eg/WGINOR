@@ -24,10 +24,10 @@ draft.data( # create an entry in data.bib (this will be implemented when running
 )
 
 draft.data( # create an entry in data.bib (this will be implemented when running taf.bootstrap)
-  data.files = "WGINOR_Dataset_2024.xlsx",
+  data.files = "WGINOR_Dataset_2025.xlsx",
   data.scripts =NULL,
   originator = "WGINOR group",
-  title = "Time series used in WGINOR in 2024",
+  title = "Time series used in WGINOR in 2025",
   file = TRUE,
   append = TRUE
 )
