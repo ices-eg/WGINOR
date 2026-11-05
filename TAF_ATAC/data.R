@@ -5,6 +5,8 @@ require(icesTAF)
 require(readxl)
 require(tidyverse)
 
+setwd("./TAF_ATAC")
+
 mkdir("data")
 datafile <- taf.data.path("WGINOR_Dataset_2025.xlsx")
 

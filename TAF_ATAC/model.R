@@ -9,6 +9,7 @@ require(tidyverse)
 require(mgcv)
 require(brms)
 sourceTAF("utilities")
+cmdstanr::set_cmdstan_path("C:/cmdstan/cmdstan-2.40.0")
 
 mkdir("model")
 
@@ -19,7 +20,7 @@ info <- as_tibble(data$info)
 
 # set up model specifications
 year_start <- 1980 # starting year for the graphs
-year_end_OL <- 2022 # ending year for the fitting
+year_end_OL <- 2023 # ending year for the fitting
 n_forecasts <- 3 # number of years to forecast
 
 # precompile brms models to speed up the modelling

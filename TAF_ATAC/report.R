@@ -57,3 +57,4 @@ for (j in 1:length(Categories)) { # loop on categories
     dev.off()
   }
 }
+
