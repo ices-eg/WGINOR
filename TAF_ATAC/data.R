@@ -8,7 +8,7 @@ require(tidyverse)
 setwd("./TAF_ATAC")
 
 mkdir("data")
-datafile <- taf.data.path("WGINOR_Dataset_2025.xlsx")
+datafile <- taf.data.path("WGINOR_Dataset_2026Test.xlsx")
 
 sheets <- excel_sheets(datafile) # read the data from the "standard" TAF data path (~/bootstrap/data/tree.csv)
 info <- read_xlsx(datafile, skip = 3, sheets[2]) %>%
