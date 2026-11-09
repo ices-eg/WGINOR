@@ -34,7 +34,7 @@ preATAC <- function(data, year_start = NA, year_end_trend = NA, year_end_OL = NA
     chains = max(3, nCores),
     cores = nCores,
     iter = niter,
-    file = "brms_model_ar0",
+    file_refit = "always",#file = "brms_model_ar0",
     save_model = TRUE
   ) # No AR process
   fit1 <- brms::brm(y ~ s(x),
@@ -44,7 +44,7 @@ preATAC <- function(data, year_start = NA, year_end_trend = NA, year_end_OL = NA
     chains = max(3, nCores),
     cores = nCores,
     iter = niter,
-    file = "brms_model_ar1",
+    file_refit = "always",#file = "brms_model_ar1",
     save_model = TRUE
   ) # AR1 pprocess
   fit2 <- brms::brm(y ~ s(x),
@@ -54,7 +54,7 @@ preATAC <- function(data, year_start = NA, year_end_trend = NA, year_end_OL = NA
     chains = max(3, nCores),
     cores = nCores,
     iter = niter,
-    file = "brms_model_ar2",
+    file_refit = "always",#file = "brms_model_ar2",
     save_model = TRUE
   ) # AR2 pprocess
   prefits <- list(fit0, fit1, fit2)
