@@ -1,6 +1,6 @@
 ---
 title: "WGINOR - Analysis of trends and recent changes (ATAC)"
-author: "Benjamin Planque and Lucie Buttay"
+author: "Lucie Buttay & Benjamin Planque"
 date: "`r Sys.Date()`"
 output:
   officedown::rdocx_document:
@@ -28,27 +28,46 @@ load("./output/tables.Rdata")
 
 ## Principles
 
-In the ATAC analysis, the idea is to model trends (and eventually autoregressive processes, AR) for each individual time-series. This is done for a standardised period of time, here from 1980 to 2021. The models are used to estimate the prediction errors, which are presented as the 95% confidence bands of prediction. The same models are then used to produce forecasts, and associated forecasting errors (or forecasting bands) for the last years of the time-series. When recent observations are available, these can be compared to the expected forecast values and forecast bands.\
-The interpretation is done in two ways:\
-- The long-term evolution of each time-series is interpreted based on the estimated trend and autoregressive process. This highlights if the series has been e.g. increasing, decreasing or following other long-term patterns. It also highlights if there is a short term 'memory' in the time series (i.e. the value observed in one year depends on the value(s) observed in the preceding year(s).\
-- The recent changes are addressed by comparing the recent observations (in the most recent years) against the forecasts/forecast bands. If the forecasts lie within the forecast bands, they were "expected" based on earlier trends & AR & prediction errors. If they are outside the forecast bands, they indicate that the recent observations in the time-series are departing from the earlier trend.\
+The ATAC analysis aims to characterise the temporal dynamics of each individual time series by modelling its underlying trend and, where supported by the data, its autoregressive (AR) structure. Models are fitted over a standardised reference period ( here 1980â€“2023). 
+The fitted models are used to estimate the underlying trend and the associated prediction uncertainty, expressed as 95% prediction intervals. The same models are subsequently used to generate forecasts for the years following the reference period, together with their associated forecast intervals. As observations become available for these years, they can be compared with the forecast estimates and intervals to assess whether recent developments are consistent with the temporal dynamics observed during the reference period.
+
+The interpretation is based on two complementary aspects:
+
+- **Long-term temporal dynamics:** The estimated trend and autoregressive structure are used to characterise the temporal behaviour of each time series. The trend component identifies long-term patterns, such as increasing or decreasing trajectories, as well as non-linear temporal variation. The autoregressive component characterises temporal dependence (or *memory*) in the series, indicating the extent to which observations in a given year are related to observations in preceding years.
+
+- **Recent changes:** Recent observations are evaluated against the forecasts and their associated prediction intervals. Observations falling within the forecast intervals are considered consistent with the temporal patterns and variability estimated from the reference period. Observations falling outside these intervals indicate departures from the expected trajectory, suggesting changes in the dynamics of the time series relative to those characterised during the reference period.
+
+
 The modelling is done with the [BRMS package](https://paul-buerkner.github.io/brms/). The plotting is done using the [ggplot2 package](https://ggplot2.tidyverse.org)
 
 ## Modelling of the trends, prediction and forecasting bands for the period 1980-present using the brms package
 
-This is done using the following steps:\
-1. three models are constructed for each time-series:\
-- a GAM model (splines) without autoregressive process: *brm(y \~ s(x))*\
-- a GAM model (splines) with autoregressive process AR(1): *brm(y \~ s(x), autocor = cor_ar(p=1))*\
-- a GAM model (splines) with autoregressive process AR(2): *brm(y \~ s(x), autocor = cor_ar(p=2))*\
-2. the best of the three models is selected, based on the LOO (Leave One Out criteria)\
-3. the trend and predictions are calculated.\
-4. the prediction percentiles for 2.5%, 12.5%, 25%, 75%, 87.5%, 97.5% are calculated.\
-5. a new "truncated" model is fitted to the time-series up to 2021. This model has the same form (ie., same AR process) as the best model fitted on the whole time series. \n
-6. the truncated model is used to make forecasts for 2022, 2023 and 2024.\
-7. the forecasts and forecast bands (50%, 75% and 95%) are calculated.\
-8. the full model, the truncated model, the trends, predictions and forecasts are archived.\
-Note that for all models we assume a Gaussian distribution of the errors. For some time-series that depart from normality the original data have been pre-transformed using a double square root. This provides a useful rescaling of the data which is expected to function well for models that assume normality. For time-series shorter than 20y, the models with AR process are not fitted because the estimation of AR coefficients is unreliable. In those cases, the trend-only model is selected by default.
+The modelling is performed in the following steps:
+
+1. **Candidate model fitting:** Three models are fitted to each time series:
+   - A generalised additive model (GAM) with a smooth trend component and no autoregressive process: `brm(y ~ s(x))`.
+   - A GAM with a first-order autoregressive process (AR(1)): `brm(y ~ s(x), autocor = cor_ar(p = 1))`.
+   - A GAM with a second-order autoregressive process (AR(2)): `brm(y ~ s(x), autocor = cor_ar(p = 2))`.
+
+2. **Model selection:** The three candidate models are compared using leave-one-out cross-validation (LOO-CV). The model with the lowest LOO information criterion (LOOIC) is selected.
+
+3. **Trend and prediction estimation:** The selected model is used to estimate the underlying trend and generate predictions over the full time series.
+
+4. **Prediction intervals:** Prediction percentiles corresponding to 2.5%, 12.5%, 25%, 75%, 87.5% and 97.5% are calculated, allowing the uncertainty around the predictions to be represented by 50%, 75% and 95% prediction intervals.
+
+5. **Truncated model fitting:** A second model is fitted using only observations up to and including 2021. This truncated model has the same structure as the best-fitting model selected in step 2, including the same autoregressive order (if applicable).
+
+6. **Forecast generation:** The truncated model is used to generate forecasts for 2022, 2023 and 2024.
+
+7. **Forecast intervals:** Forecast percentiles are calculated to quantify forecast uncertainty and derive 50%, 75% and 95% forecast intervals.
+
+8. **Archiving:** The full-period model, truncated model, estimated trends, predictions and forecasts, together with their associated uncertainty intervals, are archived.
+
+**Additional considerations and assumptions**
+
+All models assume Gaussian-distributed errors. For time series that show substantial departures from normality, the original observations are pre-transformed using a double square-root (fourth-root) transformation. This transformation reduces skewness and provides a rescaling of the data that can improve compatibility with the Gaussian error assumption.
+
+For time series shorter than 20 years, models including autoregressive processes are not fitted, as the estimation of AR coefficients is considered unreliable with shorter time series. In these cases, the trend-only model is selected by default.
 
 ## Standardised time-series graphs
 
