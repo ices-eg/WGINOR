@@ -5,13 +5,13 @@ require(icesTAF)
 require(readxl)
 require(tidyverse)
 
-setwd("./TAF_ATAC")
+# setwd("./TAF_ATAC")
 
 mkdir("data")
-datafile <- taf.data.path("WGINOR_Dataset_2026Test.xlsx")
+datafile <- taf.data.path("WGINOR_Dataset_2026last.xlsx")
 
 sheets <- excel_sheets(datafile) # read the data from the "standard" TAF data path (~/bootstrap/data/tree.csv)
-info <- read_xlsx(datafile, skip = 3, sheets[2]) %>%
+info <- read_xlsx(datafile,  sheets[2]) %>%  #skip = 3,
   # select(ShortNameKey, FullName, Unit, LastUpdate, Source, Citation, Description, ContactPerson, Email, ATACCategory, ATAC) %>%
   filter(ATAC != 0) %>%
   mutate(Transformation = case_when(
@@ -26,6 +26,19 @@ series <- read_xlsx(datafile, sheets[3]) %>%
   select(info$ShortNameKey) %>%
   mutate_all(as.numeric)
 
+
 series[, info$Transformation] <- series[, info$Transformation]^0.25 # transform selected data series using double square root (c(FALSE) is to account for the "Year" column)
+
+# Test standardization all series  ###This is a test, if it works, scaling parameters should be saved in info
+scaling_params <- series %>%
+  summarise(across(-Year, list(mean = ~ mean(.x, na.rm = TRUE),sd = ~ sd(.x, na.rm = TRUE)))) %>%
+  pivot_longer(cols = everything(),names_to = c("variable", ".value"),names_pattern = "^(.*)_(mean|sd)$")
+
+series <- series %>%
+  mutate(across(-Year, ~ (.x - mean(.x, na.rm = TRUE)) / sd(.x, na.rm = TRUE)))
+
+
 write.taf(series, dir = "data", file = "series.csv") # write the data series
 write.taf(info, dir = "data", file = "info.csv", quote = TRUE) # write the meta-data
+# write.taf(scaling_params, dir = "data", file = "scaling_params.csv", quote = TRUE) # write the meta-data
+

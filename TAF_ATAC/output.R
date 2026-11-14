@@ -19,9 +19,11 @@ for (ycol in c(2:dim(series)[2])) { # loop on all time-series
   load(file.path(".", "model", paste0("modelfits", ycol, ".Rdata")))
   print(ycol)
   results <- try(ATAC.fit$results, silent = TRUE)
-  if (info$Transformation[ycol] == TRUE) results$value <- try(results$value^4, TRUE)
+  # results$value<-(results$value*scaling_params[ycol-1,]$sd)+scaling_params[ycol-1,]$mean #@@@@@@@
+    if (info$Transformation[ycol] == TRUE) results$value <- try(results$value^4, TRUE)
   table.all[[ycol]] <- results
   info$AR[ycol] <- try(ATAC.fit$AR, silent = TRUE)
 }
 names(table.all) <- info$ShortNameKey
 save(table.all, info, file = "./output/tables.Rdata")
+
